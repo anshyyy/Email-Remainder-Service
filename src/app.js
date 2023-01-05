@@ -11,7 +11,7 @@ const setUpandStartServer=()=>{
 
     app.use('/api', ApiRoutes);
 
-    
+    setupJobs();
     app.listen(PORT,()=>{
         console.log(`Server started at ${PORT}`)
     });

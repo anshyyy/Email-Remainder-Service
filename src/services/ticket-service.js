@@ -40,6 +40,16 @@ class TicketService {
         }
     }
 
+    get = async(filter) => {
+        try {
+            const response = await this.ticketRepo.get(filter);
+            return response;
+        } catch (error) {
+            console.log("Something went wrong in email Service");
+            throw(error);
+        }
+    }
+
 }
 module.exports = TicketService;
 
