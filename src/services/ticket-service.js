@@ -12,7 +12,7 @@ class TicketService {
                 from: mailfrom,
                 to: mailTo,
                 subject: mailSubject,
-                text: mailBody
+                text: mailBody, 
             });
             return response;
         } catch (error) {
@@ -28,6 +28,16 @@ class TicketService {
             console.log(error);
             throw(error);
         }
+    }
+
+    updateTicket = async(id,data) =>{
+           try {
+               const ticket = await this.ticketRepo.update(id,data);
+               return ticket;
+           } catch (error) {
+            console.log(error);
+            throw(error);
+           }
     }
 
     create = async(data) => {

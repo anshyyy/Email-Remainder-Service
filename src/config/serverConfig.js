@@ -3,6 +3,6 @@ dotenv.config();
 
 module.exports = {
     PORT : process.env.PORT,
-    emalId: process.env.USER,
-    pass:process.env.PASS
+    emailId: process.env.USER,
+    PASS:process.env.PASS
 }
