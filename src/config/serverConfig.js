@@ -7,5 +7,5 @@ module.exports = {
     PASS:process.env.PASS,
     MESSAGE_BROKER_URL:process.env.MESSAGE_BROKER_URL,
     EXCHANGE_NAME:process.env.EXCHANGE_NAME,
-    REMAINDER_BINDING_KEY:process.env.REMAINDER_BINDING_KEY
+    REMINDER_BINDING_KEY:process.env.REMINDER_BINDING_KEY
 }
