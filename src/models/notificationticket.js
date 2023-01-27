@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     content: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.JSON,
+      allowNull:false
     },
     recepientEmail: {
       type: DataTypes.STRING,

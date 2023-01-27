@@ -10,7 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       subject: {
-        type: Sequelize.STRING,
+        type: Sequelize.JSON,
         allowNull:false
       },
       content: {
