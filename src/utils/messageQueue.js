@@ -1,6 +1,8 @@
 const amqplib = require('amqplib');
 const {MESSAGE_BROKER_URL,EXCHANGE_NAME}=require('../config/serverConfig');
-
+const TicketService = require('./../services/ticket-service');
+const makePdf = require('./pdf-maker');
+const ticketService = new TicketService();
 
 const createChannel = async () => {
      try {
@@ -18,9 +20,16 @@ const subscribeMessage = async (channel, service, binding_key) => {
           const applicationQueue = await channel.assertQueue('TEMP_QUEUE');
           channel.bindQueue(applicationQueue.queue, EXCHANGE_NAME, binding_key);
 
-          channel.consume(applicationQueue.queue, msg => {
+          channel.consume(applicationQueue.queue, async msg => {
                console.log('Received Data');
                console.log(msg.content.toString());
+               var content = (msg.content.toString());
+               var data = JSON.parse(msg.content)
+               const ticketData = {subject : "Tickets for Your Travel",content :content.toString(), recepientEmail:data.email,status:"PENDING",notification:new Date(+new Date() + 86400000)};
+               console.log(data);
+               makePdf(data);
+               // we will get data from the booking service and create the tickets
+               const ticket = await ticketService.create(ticketData);
                channel.ack(msg);
           });
      } catch (error) {

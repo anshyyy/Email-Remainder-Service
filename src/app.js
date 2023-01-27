@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const db = require('./models/index');
 const bodyParser = require('body-parser');
 const {PORT,REMINDER_BINDING_KEY} = require('./config/serverConfig');
 const ApiRoutes = require('./routes/index');
@@ -14,8 +15,9 @@ const setUpandStartServer=async()=>{
 
     const channel = await createChannel();
     await subscribeMessage(channel,undefined,REMINDER_BINDING_KEY);
+    
 
-   // setupJobs();
+    setupJobs();
     app.listen(PORT,()=>{
         console.log(`Server started at ${PORT}`)
     });
